@@ -1,4 +1,8 @@
-//smoke testing
+/*
+	Remove all items from account
+	Items in a project
+	Items without a project
+*/
 
 
 var frisby = require ('frisby');

@@ -1,4 +1,6 @@
-//smoke testing
+/*
+	Delete all projects of the account, If there is no projects, display a message.
+*/
 
 
 var frisby = require ('frisby');

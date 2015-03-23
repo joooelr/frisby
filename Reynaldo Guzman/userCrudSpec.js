@@ -1,4 +1,7 @@
-// Smoke testing
+/*
+	User
+	Add/Display/Edit/delete/Verify deletion
+*/
 
 var frisby = require ('frisby');
 
