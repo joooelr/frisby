@@ -1,5 +1,5 @@
 /*
-Sanity testing, verify that an error is generated when attempting to delete an account that doesn't exist.
+Sanity testing, verify user is not authenticated, based on a wrong password.
 */
 
 var frisby = require ('frisby');
@@ -7,15 +7,17 @@ var frisby = require ('frisby');
 frisby.globalSetup({
 	request:{
 		headers:{
-			'Authorization' :'Basic cmV5bmFsZGl0b0BnbWFpbC5jb206QiFnc2gwdjNs123'
+			'Authorization' :'Basic cmV5bmFsZGl0b0BnbWFpbC5jb206QiFnc2gwdjNsWRONG'
 		},
 		//proxy: 'http://172.20.240.5:8080'
 	}
 });
 
-	frisby.create('Deleting user')
-		.delete('https://todo.ly/api/user/0.json')
-		.expectJSON({ErrorCode : 105})
-		.expectJSON({ErrorMessage: "Account doesn't exist"})
+	frisby.create("Verify if new user is authenticated")
+		.get('https://todo.ly/api/authentication/isauthenticated.json')
 		.inspectJSON()
+		.afterJSON(function(json){
+		expect(json).toBeFalsy();
+		console.log("User is not authenticated, false!!");
+		)
 	.toss();
